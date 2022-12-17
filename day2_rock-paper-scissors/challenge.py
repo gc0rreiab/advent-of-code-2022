@@ -1,7 +1,7 @@
 import sys
 
 class Round:
-    def _init_ (self, oponent_play, your_play):
+    def __init__ (self, oponent_play, your_play):
         self.oponent_play = oponent_play
         self.your_play = your_play
         self.score = 0
@@ -29,36 +29,23 @@ class Round:
 
         self.score = pts  
 
-        
-          
 
+          
 file = open('input.txt', 'r')
 lines = file.readlines()
 
+totalScore = 0
+
 for line in lines:
-    #code here
+    l = line.split()
+    l[0] = 'R' if l[0]=='A' else 'P' if l[0]=='B' else 'S'
+    l[1] = 'R' if l[1]=='X' else 'P' if l[1]=='Y' else 'S'
+    # print(l)
+    r = Round(l[0], l[1])
+    r.scoreCalculation()
 
+    totalScore = totalScore + r.score
 
+print(totalScore)
 
 exit()
-
-
-# 1st Column: what the opponent is going to play
-# A: Rock
-# B: Paper
-# C: Scissors
-
-# 2nd Column: what I should play
-# X: Rock
-# Y: Paper
-# Z: Scissors
-
-# Total Score: sum of your scores for each round.
-# Single round Score: the score for the shape (1 for Rock, 2 for paper, 3 for scissors)
-#                   + the score for the outcome of the round (0 if lose, 3 if draw, 6 if win)
-
-Formas de ganhar
-
-R - P
-P - S
-S - R
