@@ -29,8 +29,7 @@ class Round:
 
         self.score = pts  
 
-
-          
+   
 file = open('input.txt', 'r')
 lines = file.readlines()
 
