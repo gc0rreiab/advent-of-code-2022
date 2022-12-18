@@ -29,22 +29,41 @@ class Round:
 
         self.score = pts  
 
-   
+
 file = open('input.txt', 'r')
 lines = file.readlines()
 
-totalScore = 0
+totalScore1 = 0
+totalScore2 = 0
 
 for line in lines:
     l = line.split()
+
     l[0] = 'R' if l[0]=='A' else 'P' if l[0]=='B' else 'S'
-    l[1] = 'R' if l[1]=='X' else 'P' if l[1]=='Y' else 'S'
-    # print(l)
+    l[1] = 'R' if l[1]=='X' else 'P' if l[1]=='Y' else 'S'    
     r = Round(l[0], l[1])
     r.scoreCalculation()
+    totalScore1 = totalScore1 + r.score
 
-    totalScore = totalScore + r.score
+    #Solve parte 2
+    if l[1] == 'R':
+        #need to lose
+        l[1] = 'P' if l[0]=='S' else 'R' if l[0]=='P' else 'S'
+    elif l[1] == 'P':
+        #need to end the round in a draw
+        l[1] = 'P' if l[0]=='P' else 'R' if l[0]=='R' else 'S'
+    else:
+        #need to win
+        l[1] = 'S' if l[0]=='P' else 'P' if l[0]=='R' else 'R'
+    r2 = Round(l[0], l[1])
+    r2.scoreCalculation()
+    totalScore2 = totalScore2 + r2.score
 
-print(totalScore)
+
+#Part 1 result
+print(totalScore1)
+
+#Part 2 result
+print(totalScore2)
 
 exit()
