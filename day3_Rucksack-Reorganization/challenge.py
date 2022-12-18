@@ -12,6 +12,7 @@ class Rucksack:
         self.error = e[0]
         #calculate the priority
         if self.error.isupper():
+            #Ascii table properties
             self.priorities = ord(self.error) - 38
         else:
             self.priorities = ord(self.error) - 96
@@ -25,6 +26,8 @@ total = 0
 
 for line in lines:
     line = line.rstrip('\n')
+
+    #Solve part 1
     r = Rucksack(line)
     r.findError()
     total = total + r.priorities
@@ -36,6 +39,5 @@ exit()
 
 
 
-# Elfs are devided into groups of three
 
 
