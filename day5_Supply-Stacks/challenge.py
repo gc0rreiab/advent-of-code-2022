@@ -12,6 +12,9 @@ class Puzzle:
         self.s8 = s8
         self.s9 = s9
 
+    def rearrangement(self, moves, origin, destination):
+        return 0
+
 #File Interpretation 
 file = open('input.txt', 'r')
 lines = file.readlines()
@@ -19,16 +22,7 @@ puzzle_input = lines[0:8]
 rearrangement_procedure_input = lines[10:]
 
 #Create stacks and Puzzle Object
-s1 = []
-s2 = []
-s3 = []
-s4 = []
-s5 = []
-s6 = []
-s7 = []
-s8 = []
-s9 = []
-
+s1 = [], s2 = [], s3 = [], s4 = [], s5 = [], s6 = [], s7 = [], s8 = [], s9 = []
 for line in puzzle_input:
     l = line.rstrip('\n').replace('    ',' ').replace('[','').replace(']','').split(' ')
     #print(l)
@@ -44,8 +38,12 @@ for line in puzzle_input:
 
 p = Puzzle(s1, s2, s3, s4, s5, s6, s7, s8, s9)
 
-
-
+#Read and perform rearrangement procedures
+good_indices = [1, 3, 5]
+for line in rearrangement_procedure_input:
+    rearrangement_data = [list(line.split(' '))[i] for i in good_indices]
+    print(rearrangement_data)
+    p.rearrangement(rearrangement_data)
 
 exit()
 
