@@ -39,13 +39,14 @@ totalScore2 = 0
 for line in lines:
     l = line.split()
 
+    #Solve part 1
     l[0] = 'R' if l[0]=='A' else 'P' if l[0]=='B' else 'S'
     l[1] = 'R' if l[1]=='X' else 'P' if l[1]=='Y' else 'S'    
     r = Round(l[0], l[1])
     r.scoreCalculation()
     totalScore1 = totalScore1 + r.score
 
-    #Solve parte 2
+    #Solve part 2
     if l[1] == 'R':
         #need to lose
         l[1] = 'P' if l[0]=='S' else 'R' if l[0]=='P' else 'S'

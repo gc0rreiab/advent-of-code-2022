@@ -10,6 +10,7 @@ class Rucksack:
     def findError(self):
         e = list(set(self.compartments1) & set(self.compartments2))
         self.error = e[0]
+        #calculate the priority
         if self.error.isupper():
             self.priorities = ord(self.error) - 38
         else:
@@ -33,5 +34,8 @@ print(total)
 
 exit()
 
+
+
+# Elfs are devided into groups of three
 
 
