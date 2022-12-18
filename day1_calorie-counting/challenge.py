@@ -31,13 +31,13 @@ for elf in Elves:
       topThree[2] = elf
   topThree.sort(key=lambda x: x.calories, reverse=1)
       
-#top three
+#Part 1 result 
 print("Top three: ")
 print(f'1: {topThree[0].calories}')
 print(f'2: {topThree[1].calories}')
 print(f'3: {topThree[2].calories}')
 
-#total
+#Part 2 result
 print(f'Total: {topThree[0].calories + topThree[1].calories + topThree[2].calories}')
 
 exit()
