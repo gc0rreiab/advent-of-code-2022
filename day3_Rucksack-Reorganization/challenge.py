@@ -17,7 +17,6 @@ class Rucksack:
         else:
             self.priorities = ord(self.error) - 96
             
-
 #Part 2
 class Group():
     def __init__ (self, items):
@@ -36,8 +35,6 @@ class Group():
             self.priorities = ord(self.badge) - 38
         else:
             self.priorities = ord(self.badge) - 96
-
-
 
 file = open('input.txt', 'r')
 lines = file.readlines()
@@ -71,8 +68,3 @@ print(total1)
 print(total2)
 
 exit()
-
-
-
-
-
