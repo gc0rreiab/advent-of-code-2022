@@ -16,24 +16,59 @@ class Rucksack:
             self.priorities = ord(self.error) - 38
         else:
             self.priorities = ord(self.error) - 96
+            
+
+#Part 2
+class Group():
+    def __init__ (self, items):
+        self.items1 = items[0]
+        self.items2 = items[1]
+        self.items3 = items[2]
+        self.badge = 0
+        self.priorities = 0
+
+    def findBadge(self):
+        b = list((set(self.items1) & set(self.items2)) & set(self.items3))
+        self.badge = b[0]
+        #calculate the priority
+        if self.badge.isupper():
+            #Ascii table properties
+            self.priorities = ord(self.badge) - 38
+        else:
+            self.priorities = ord(self.badge) - 96
 
 
 
 file = open('input.txt', 'r')
 lines = file.readlines()
 
-total = 0
+total1 = 0
+total2 = 0
 
+i = 0
+items = ['','','']
 for line in lines:
     line = line.rstrip('\n')
 
     #Solve part 1
     r = Rucksack(line)
     r.findError()
-    total = total + r.priorities
+    total1 = total1 + r.priorities
+
+    #Solve part 2
+    items[i] = line
+    if i == 2:
+        g = Group(items)
+        g.findBadge()
+        total2 = total2 + g.priorities
+        i = 0
+    else:
+        i = i + 1
 
 #Part 1 result
-print(total)
+print(total1)
+#Part 2 result
+print(total2)
 
 exit()
 
