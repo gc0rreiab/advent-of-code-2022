@@ -10,7 +10,6 @@ class Stacks:
             self.stacks[destination-1].insert(0,crate_to_swap)
 
     def rearrangement_crateMover9001(self, moves, origin, destination):
-        #crates_to_swap = self.stacks[origin-1][0:moves]
         crates_to_swap = []
         for i in range(moves):
             crates_to_swap.insert(0,self.stacks[origin-1].pop(0))
