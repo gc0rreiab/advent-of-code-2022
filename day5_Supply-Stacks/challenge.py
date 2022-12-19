@@ -1,19 +1,13 @@
 import sys
 
-class Puzzle:
+class Stacks:
     def __init__(self, s1, s2, s3, s4, s5, s6, s7, s8, s9):
-        self.s1 = s1
-        self.s2 = s2
-        self.s3 = s3
-        self.s4 = s4
-        self.s5 = s5
-        self.s6 = s6
-        self.s7 = s7
-        self.s8 = s8
-        self.s9 = s9
+        self.stacks = [s1, s2, s3, s4, s5, s6, s7, s8, s9]
 
     def rearrangement(self, moves, origin, destination):
-        return 0
+        for i in range(moves):
+            crate_to_swap = self.stacks[origin-1].pop(0)
+            self.stacks[destination-1].insert(0,crate_to_swap)
 
 #File Interpretation 
 file = open('input.txt', 'r')
@@ -21,8 +15,16 @@ lines = file.readlines()
 puzzle_input = lines[0:8]
 rearrangement_procedure_input = lines[10:]
 
-#Create stacks and Puzzle Object
-s1 = [], s2 = [], s3 = [], s4 = [], s5 = [], s6 = [], s7 = [], s8 = [], s9 = []
+#From puzzle collumns create lists and use it to create the Stacks Object
+s1 = []
+s2 = []
+s3 = []
+s4 = []
+s5 = []
+s6 = []
+s7 = []
+s8 = []
+s9 = []
 for line in puzzle_input:
     l = line.rstrip('\n').replace('    ',' ').replace('[','').replace(']','').split(' ')
     #print(l)
@@ -35,16 +37,12 @@ for line in puzzle_input:
     if l[6] != '' : s7.append(l[6])
     if l[7] != '' : s8.append(l[7])
     if l[8] != '' : s9.append(l[8])
+s = Stacks(s1, s2, s3, s4, s5, s6, s7, s8, s9)
 
-p = Puzzle(s1, s2, s3, s4, s5, s6, s7, s8, s9)
-
-#Read and perform rearrangement procedures
+#Read and perform rearrangement procedures on stack Object s
 good_indices = [1, 3, 5]
 for line in rearrangement_procedure_input:
-    rearrangement_data = [list(line.split(' '))[i] for i in good_indices]
-    print(rearrangement_data)
-    p.rearrangement(rearrangement_data)
-
-exit()
-
+    rearrangement_data = [list(line.rstrip('\n').split(' '))[i] for i in good_indices]
+    #print(rearrangement_data)
+    s.rearrangement(int(rearrangement_data[0]), int(rearrangement_data[1]), int(rearrangement_data[2]))
 
