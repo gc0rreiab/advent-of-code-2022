@@ -46,3 +46,8 @@ for line in rearrangement_procedure_input:
     #print(rearrangement_data)
     s.rearrangement(int(rearrangement_data[0]), int(rearrangement_data[1]), int(rearrangement_data[2]))
 
+#Part 1 Solution
+for i in range(9):
+    print(s.stacks[i][0], end = '')
+exit()
+ 
