@@ -9,6 +9,14 @@ class Stacks:
             crate_to_swap = self.stacks[origin-1].pop(0)
             self.stacks[destination-1].insert(0,crate_to_swap)
 
+    def rearrangement_crateMover9001(self, moves, origin, destination):
+        #crates_to_swap = self.stacks[origin-1][0:moves]
+        crates_to_swap = []
+        for i in range(moves):
+            crates_to_swap.insert(0,self.stacks[origin-1].pop(0))
+        for i in range (moves):
+            self.stacks[destination-1].insert(0,crates_to_swap[i])
+
 #File Interpretation 
 file = open('input.txt', 'r')
 lines = file.readlines()
@@ -39,14 +47,19 @@ for line in puzzle_input:
     if l[8] != '' : s9.append(l[8])
 s = Stacks(s1, s2, s3, s4, s5, s6, s7, s8, s9)
 
-#Read and perform rearrangement procedures on stack Object s
+#Parse Rearrangement Data (moves, origin and destinations) and perform rearrangement procedures on stack Object s
 good_indices = [1, 3, 5]
 for line in rearrangement_procedure_input:
     rearrangement_data = [list(line.rstrip('\n').split(' '))[i] for i in good_indices]
-    #print(rearrangement_data)
-    s.rearrangement(int(rearrangement_data[0]), int(rearrangement_data[1]), int(rearrangement_data[2]))
+    
+    #Uncomment for part 1 solution (CrateMover 9000)
+    #s.rearrangement(int(rearrangement_data[0]), int(rearrangement_data[1]), int(rearrangement_data[2]))
 
-#Part 1 Solution
+    #Part 2 solution (CrateMover 9001)
+    s.rearrangement_crateMover9001(int(rearrangement_data[0]), int(rearrangement_data[1]), int(rearrangement_data[2]))
+
+
+#Print Solution
 for i in range(9):
     print(s.stacks[i][0], end = '')
 exit()
